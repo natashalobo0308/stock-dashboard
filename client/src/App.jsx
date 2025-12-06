@@ -128,7 +128,7 @@ function Dashboard({ user, onLogout }) {
             </div>
             
             <small style={{ color: '#64748b', fontSize: '0.85rem' }}>
-              Supported: <span style={{ color: '#94a3b8' }}>GOOG, TSLA, AMZN, META, NVDA and others.</span>
+              Supported: <span style={{ color: '#94a3b8' }}>GOOG, TSLA, AMZN, META, NVDA.</span>
             </small>
           </div>
 

@@ -17,7 +17,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Glassmorphism */
+/* Glassmorphism Utility Class */
 .glass-panel {
   background: var(--glass-bg);
   backdrop-filter: blur(12px);
@@ -27,20 +27,22 @@ body {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
-/* --- FIXED LAYOUT SYSTEM (Non-Responsive) --- */
+/* --- DEFAULT LAYOUT (Laptop/Desktop) --- */
 .dashboard-layout {
   display: grid;
-  grid-template-columns: 260px 1fr; /* Fixed Sidebar + Content */
+  grid-template-columns: 260px 1fr; /* Sidebar | Content */
   height: 100vh;
-  overflow: hidden;
+  overflow: hidden; /* Prevent full page scroll, internal scrolling instead */
 }
 
+/* Sidebar Styles */
 .sidebar {
   padding: 2rem;
   border-right: 1px solid var(--glass-border);
   display: flex;
   flex-direction: column;
   background: rgba(15, 23, 42, 0.5);
+  z-index: 50;
 }
 
 .brand {
@@ -49,24 +51,16 @@ body {
   background: linear-gradient(to right, #60a5fa, #a78bfa);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  white-space: nowrap;
 }
 
-/* Main Content with Center Alignment */
-.main-content {
-  padding: 2rem;
-  overflow-y: auto; /* Normal Scrollbar restored */
-  height: 100vh;
-  box-sizing: border-box;
+.nav-group {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-/* Content Wrapper to Center Everything */
-.content-wrapper {
-  max-width: 1000px; /* Limits width to keep things centered */
-  margin: 0 auto;    /* Centers the block horizontally */
-  width: 100%;
-}
-
-/* Nav Items */
 .nav-item {
   display: flex; 
   align-items: center; 
@@ -78,7 +72,54 @@ body {
 }
 .nav-item:hover, .nav-item.active { color: white; }
 
-/* Stats Grid */
+/* Main Content Area */
+.main-content {
+  padding: 2rem;
+  overflow-y: auto; /* Scrollable content */
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+.content-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Top Header Section */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+/* Inputs & Buttons */
+.modern-input {
+  background: rgba(0,0,0,0.3);
+  border: 1px solid var(--glass-border);
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  outline: none;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.btn-glow {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  white-space: nowrap;
+}
+
+/* Stats Grid (Auto-Responsive) */
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -93,12 +134,11 @@ body {
 }
 .stock-card:active { transform: scale(0.98); }
 
-/* Typography */
 .ticker { font-size: 1.25rem; font-weight: 700; letter-spacing: 1px; }
 .price { font-size: 2rem; font-weight: 300; margin: 0.5rem 0; }
 .change { font-size: 0.9rem; font-weight: 600; }
 
-/* Chart */
+/* Chart Section */
 .chart-container {
   height: 400px;
   padding: 2rem;
@@ -106,38 +146,7 @@ body {
   margin-bottom: 4rem;
 }
 
-/* Inputs */
-.top-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.modern-input {
-  background: rgba(0,0,0,0.3);
-  border: 1px solid var(--glass-border);
-  color: white;
-  padding: 12px;
-  border-radius: 8px;
-  outline: none;
-  font-size: 1rem;
-}
-
-.btn-glow {
-  background: linear-gradient(135deg, #3b82f6, #2563eb);
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-/* Login Page Centering */
+/* Login Page (Centered Always) */
 .login-wrapper {
   height: 100vh;
   width: 100vw;
@@ -146,4 +155,67 @@ body {
   align-items: center;
   padding: 20px;
   box-sizing: border-box;
+}
+
+/* --- RESPONSIVE MEDIA QUERIES (Tablets & Phones) --- */
+@media (max-width: 900px) {
+  
+  /* Change layout from Grid (Side-by-Side) to Flex (Top-to-Bottom) */
+  .dashboard-layout {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    overflow: visible; /* Allow body scroll on mobile */
+  }
+
+  /* Sidebar becomes Top Navigation Bar */
+  .sidebar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    position: sticky; /* Sticks to the top of the phone screen */
+    top: 0;
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--glass-border);
+    backdrop-filter: blur(20px);
+    box-sizing: border-box;
+  }
+
+  /* Adjust Nav Items for Horizontal Layout */
+  .nav-group {
+    margin-top: 0;
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+  
+  /* Hide text labels on small screens to save space (Icons only) */
+  .nav-text {
+    display: none;
+  }
+
+  /* Adjust Main Content */
+  .main-content {
+    padding: 1.5rem;
+    height: auto;
+    overflow-y: visible;
+  }
+
+  /* Stack inputs vertically on very small screens */
+  .top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr; /* Force single column on mobile */
+  }
+
+  .chart-container {
+    height: 300px; /* Shorter chart for small screens */
+    padding: 1rem;
+  }
 }
