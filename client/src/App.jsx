@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import { useState, useEffect, useRef } from 'react';
 import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip } from 'recharts';
 import { LayoutDashboard, Activity, LogOut } from 'lucide-react';
@@ -56,7 +56,7 @@ function Dashboard({ user, onLogout }) {
   };
 
   useEffect(() => {
-    ws.current = new WebSocket('ws://localhost:8080');
+    ws.current = new WebSocket('https://stock-dashboard-9kvi.onrender.com');
     ws.current.onmessage = (event) => {
       const message = JSON.parse(event.data);
       if (message.type === 'UPDATE') {
