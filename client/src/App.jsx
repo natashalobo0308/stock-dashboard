@@ -56,7 +56,7 @@ function Dashboard({ user, onLogout }) {
   };
 
   useEffect(() => {
-    ws.current = new WebSocket('https://stock-dashboard-9kvi.onrender.com');
+    ws.current = new WebSocket('wss://stock-dashboard-9kvi.onrender.com');
     ws.current.onmessage = (event) => {
       const message = JSON.parse(event.data);
       if (message.type === 'UPDATE') {
