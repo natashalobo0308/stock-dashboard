@@ -1,7 +1,14 @@
+
 const WebSocket = require('ws');
 
-const wss = new WebSocket.Server({ port: 8080 });
+// CRITICAL FIX: Use the port Render assigns, or fallback to 8080 for localhost
+const port = process.env.PORT || 8080; 
 
+const wss = new WebSocket.Server({ port: port });
+
+console.log(`WebSocket Server running on port ${port}`);
+
+// ... rest of your code (STOCKS constant, etc.) ...
 // 1. Mock Data: Initial prices for supported stocks
 const STOCKS = {
     'GOOG': 140.50,
