@@ -1,21 +1,3 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-
-
 # 📈 TradeFlow - Real-Time Stock Broker Dashboard
 
 **TradeFlow** is a high-performance, institutional-grade stock trading dashboard that simulates real-time market data using WebSockets. It allows users to subscribe to live stock tickers, view dynamic price updates without refreshing, and visualize market trends with interactive charts.
@@ -54,11 +36,73 @@ Designed with a modern **Glassmorphism UI**, it is fully responsive across mobil
 stock-dashboard/
 ├── client/              # React Frontend
 │   ├── src/
-│   │   ├── App.jsx      # Main Application Logic
-│   │   └── App.css      # Responsive Glassmorphism Styles
-│   │         
-│   └── package.json
+│   │   ├── App.jsx      # Main Application Logic (Dashboard & Login)
+│   │   ├── App.css      # Responsive Glassmorphism Styles
+│   │   └── main.jsx     # React Entry Point
+│   └── package.json     # Frontend Dependencies
 ├── server/              # Node.js Backend
 │   ├── index.js         # WebSocket Server & Market Simulator
-│   └── package.json
+│   └── package.json     # Backend Dependencies
 └── README.md
+```
+
+###⚡ Getting Started (How to Run Locally)
+This project consists of two parts: the Backend Server (which provides the data) and the Frontend Client (which displays the data). You need to run both simultaneously.
+
+##Prerequisites
+Node.js installed on your machine (v18 or higher recommended).
+Git installed.
+
+Step 1: Clone the Repository
+Open your terminal and run:
+```bash
+git clone [https://github.com/natashalobo0308/stock-dashboard.git](https://github.com/natashalobo0308/stock-dashboard.git)
+cd stock-dashboard
+```
+
+
+Step 2: Start the Backend Server
+The backend handles the WebSocket connection and stock price simulation.
+Open a terminal inside the project folder.
+Navigate to the server folder and install dependencies:
+```bash
+cd server
+npm install
+```
+
+Start the server:
+```bash
+node index.js
+```
+
+You should see the message: WebSocket Server running on port 8080 (or another port).
+
+Step 3: Start the Frontend Client
+The frontend is the React application that users interact with.
+
+Open a new terminal window (keep the backend terminal running).
+
+Navigate to the client folder and install dependencies:
+
+```bash
+cd client
+npm install
+```
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+
+Open the link provided in the terminal (usually http://localhost:5173) in your web browser.
+
+🌍 Deployment Guide
+This project is configured for a split-deployment strategy:
+
+Backend: Deployed on Render (for persistent WebSocket connections).
+Render URL (https://stock-dashboard-9kvi.onrender.com)
+
+Frontend: Deployed on Vercel (for fast UI delivery).
+Vercel URL (https://stock-dashboard-woad.vercel.app/)
