@@ -46,10 +46,11 @@ stock-dashboard/
 └── README.md
 ```
 
-###⚡ Getting Started (How to Run Locally)
+
+⚡ Getting Started (How to Run Locally)
 This project consists of two parts: the Backend Server (which provides the data) and the Frontend Client (which displays the data). You need to run both simultaneously.
 
-##Prerequisites
+Prerequisites
 Node.js installed on your machine (v18 or higher recommended).
 Git installed.
 
@@ -69,28 +70,22 @@ Navigate to the server folder and install dependencies:
 cd server
 npm install
 ```
-
 Start the server:
 ```bash
 node index.js
 ```
-
 You should see the message: WebSocket Server running on port 8080 (or another port).
+
 
 Step 3: Start the Frontend Client
 The frontend is the React application that users interact with.
-
 Open a new terminal window (keep the backend terminal running).
-
 Navigate to the client folder and install dependencies:
-
 ```bash
 cd client
 npm install
 ```
-
 Start the development server:
-
 ```bash
 npm run dev
 ```
